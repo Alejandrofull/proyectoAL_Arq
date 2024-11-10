@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detección de Vibraciones</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Detección de Vibraciones</h1>
+        <div class="gauge">
+            <div class="gauge-needle" id="vibration-needle"></div>
+            <div class="gauge-labels">
+                <span class="low-level">Bajo</span>
+                <span class="moderate-level">Moderado</span>
+                <span class="high-level">Alto</span>
+                <span class="high-level">Peligro</span>
+            </div>
+        </div>
+        <p class="warning-text">¡ADVERTENCIA!</p>
+
+        <div class="control-section">
+            <h2>Ajustador de Ruido</h2>
+            <input type="range" id="noise-control" min="0" max="100" value="50">
+            <p id="noise-level">Nivel de regulación de ruido: 50%</p>
+        </div>
+    </div>
+
+    <style>
+        /* Estilo del fondo general */
+        body {
+            background-color: #1e2a38; /* Fondo oscuro principal */
+            color: #f5f5f5;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        /* Fondo y estilo general del contenedor */
+        .container {
+            background: #263645;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6);
+            max-width: 600px;
+            margin: 40px auto;
+            color: #ffcc80; /* Color de texto principal */
+            text-align: center;
+        }
+        
+        /* Contenedor del medidor con un fondo degradado */
+        .gauge {
+            position: relative;
+            width: 350px; /* Tamaño del medidor */
+            height: 180px;
+            margin: 20px auto;
+            background: linear-gradient(90deg, #1e5631, #ffcc00, #b22222); /* Gradiente verde, amarillo, rojo */
+            border-radius: 180px 180px 0 0; /* Ajuste del borde redondeado */
+            overflow: hidden;
+            box-shadow: inset 0 -5px 15px rgba(0, 0, 0, 0.4), 0 6px 15px rgba(0, 0, 0, 0.6);
+            border: 3px solid #364a5f;
+        }
+        
+        /* Aguja del medidor */
+        .gauge-needle {
+            position: absolute;
+            width: 8px;
+            height: 130px;
+            background: #ffcc80;
+            top: 10px;
+            left: 50%;
+            transform-origin: bottom center;
+            transform: rotate(45deg); /* Ajuste de posición */
+            box-shadow: 0 0 5px rgba(255, 204, 128, 0.8); /* Brillo en la aguja */
+        }
+        
+        /* Etiquetas de nivel de peligro */
+        .gauge-labels {
+            display: flex;
+            justify-content: space-between;
+            position: absolute;
+            top: 75%; /* Ajuste de posición para que se vean mejor */
+            width: 100%;
+            padding: 10px;
+            font-size: 1.2em; /* Tamaño del texto */
+            font-weight: bold;
+            color: white;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6); /* Sombra para que resalten sobre el fondo */
+        }
+        .gauge-labels span {
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+        }
+        
+        /* Colores específicos para cada nivel */
+        .low-level {
+            color: #1e5631; /* Verde oscuro */
+        }
+        
+        .moderate-level {
+            color: #ffcc00; /* Amarillo */
+        }
+        
+        .high-level {
+            color: #b22222; /* Rojo oscuro */
+            margin-right: 10px; /* Ajuste hacia la izquierda */
+        }
+        
+        /* Texto de advertencia */
+        .warning-text {
+            color: red;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-top: 10px;
+        }
+        
+        /* Sección de control deslizante */
+        .control-section {
+            margin-top: 20px;
+        }
+        
+        input[type="range"] {
+            width: 100%;
+            accent-color: #ffcc80;
+            background-color: #364a5f;
+            border-radius: 5px;
+            height: 8px;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+        
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #ffcc80;
+            box-shadow: 0 0 5px rgba(255, 204, 128, 0.6);
+            cursor: pointer;
+        }
+        
+        .control-section h2 {
+            font-size: 1.3em;
+            color: #ffcc80;
+            margin-bottom: 10px;
+        }
+        
+        .control-section p {
+            font-size: 1.1em;
+            margin-top: 10px;
+            color: #ffcc80;
+        }
+        </style>
+            
+            <script>
+                const vibrationNeedle = document.getElementById('vibration-needle');
+                const noiseControl = document.getElementById('noise-control');
+                const noiseLevel = document.getElementById('noise-level');
+                
+                // Función para actualizar el medidor de vibración
+                function updateVibration(level) {
+                    const rotation = (level / 100) * 180 - 90; // Calcula la rotación de la aguja
+                    vibrationNeedle.style.transform = `rotate(${rotation}deg)`;
+                    
+                    // Cambia el color del texto de advertencia dependiendo del nivel
+                    const warningText = document.querySelector('.warning-text');
+                    if (level > 75) {
+                        warningText.textContent = "¡PELIGRO!";
+                        warningText.style.color = "red";
+                    } else if (level > 50) {
+                        warningText.textContent = "¡ADVERTENCIA!";
+                        warningText.style.color = "orange";
+                    } else if (level > 25) {
+                        warningText.textContent = "¡PRECAUCIÓN!";
+                        warningText.style.color = "yellow";
+                    } else {
+                        warningText.textContent = "NIVEL SEGURO";
+                        warningText.style.color = "green";
+                    }
+                }
+                
+                // Actualizar el nivel de ruido cuando se ajusta el control
+                noiseControl.addEventListener('input', (event) => {
+                    noiseLevel.textContent = `Nivel de regulación de ruido: ${event.target.value}%`;
+                    updateVibration(event.target.value);
+                });
+            </script>
+            
+            

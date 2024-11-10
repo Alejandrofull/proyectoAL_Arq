@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Seguridad</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="container">
+        <img src="../imagenes/saci.webp" alt="Logo SACI" class="logo">
+        <h1 class="title">Sistema de Seguridad <br> SACI</h1>
+        <div class="status-indicator">
+            <span class="led-indicator" id="status-led"></span>
+            <span class="status-text">Estado</span>
+        </div>
+
+        <!-- Botón principal de Activar Seguimiento -->
+        <button class="main-button" id="activate-tracking">Activar Seguimiento</button>
+
+        <!-- Sección de sensores -->
+        <div class="sensor-section">
+            <div class="sensor-card">
+                <h2>Detección de Temperatura</h2>
+                <p>Valor: <span id="temp-value">-- °C</span></p>
+                <div class="progress-bar" id="temp-bar"></div>
+                <button class="sensor-button" onclick="location.href='Temperatura.html'">Verificar</button>
+
+            </div>
+            <div class="sensor-card">
+                <h2>Detección de Incendio</h2>
+                <p>Estado: <span id="smoke-status">Inactivo</span></p>
+                <button class="sensor-button" onclick="location.href='incendio.html'">Verificar</button>
+
+            </div>
+            <div class="sensor-card">
+                <h2>Detección de Vibraciones</h2>
+                <p>Estado: <span id="vibration-status">Inactivo</span></p>
+                <button class="sensor-button" onclick="location.href='vibraciones.html'">Verificar</button>
+
+            </div>
+        </div>
+
+        <!-- Botón de Desactivar Seguimiento -->
+        <button class="main-button off-button" id="deactivate-tracking">Desactivar</button>
+
+        <!-- Historial de Eventos -->
+        <div class="event-log">
+            <h2>Historial de Eventos</h2>
+            <ul id="event-list">
+                <!-- Ejemplo de eventos registrados -->
+                <li>Temperatura alta detectada - 14:32</li>
+                <li>Vibración fuerte detectada - 14:45</li>
+                <li>Incendio potencial detectado - 15:00</li>
+            </ul>
+            <!-- Botón rojo para llamar a la policía -->
+            <button class="emergency-button" onclick="location.href='llamada.html'">Llamar a la Policía</button>
+        </div>
+
+        <!-- Control de Temas -->
+        <div class="theme-switcher">
+            <label for="theme-select">Tema:</label>
+            <select id="theme-select">
+                <option value="light">Claro</option>
+                <option value="dark">Oscuro</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Asistente Virtual -->
+    <div class="virtual-assistant" id="assistant">
+        <div class="assistant-header">
+            <h3>DASH</h3>
+            <button id="close-assistant">&times;</button>
+        </div>
+        <div class="assistant-body">
+            <p>Hola, soy Dash, tu asistente virtual. ¿En qué puedo ayudarte hoy?</p>
+        </div>
+        <div class="assistant-footer">
+            <input type="text" id="assistant-input" placeholder="Escribe tu pregunta...">
+            <button id="send-assistant">Enviar</button>
+        </div>
+    </div>
+    <button class="assistant-toggle" id="toggle-assistant">
+        <img src="../imagenes/asistente.webp" alt="Logo Asistente" class="assistant-logo">
+        <i class="fas fa-comments"></i>
+    </button>
+
+    <script src="index.js"></script>
+</body>
+</html>

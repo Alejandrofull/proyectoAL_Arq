@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emergencia - Llamada en Proceso</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">Llamada de Emergencia</h1>
+        <div class="call-status">
+            <p>Contactando a los servicios de emergencia...</p>
+            <ul>
+                <li>Llamando a la Policía...</li>
+                <li>Llamando a Bomberos...</li>
+                <li>Llamando a Ambulancia...</li>
+            </ul>
+            <p class="call-info">Por favor, mantén la calma y espera la respuesta de los servicios de emergencia.</p>
+        </div>
+        <button class="main-button" onclick="location.href='index.html'">Volver al Inicio</button>
+    </div>
+</body>
+</html>
+<style>
+.security-action-button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    font-size: 1em;
+    color: #c91f1fc7;
+    background-color: #ff9800;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 5px 10px rgba(255, 152, 0, 0.4);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.security-action-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(255, 152, 0, 0.6);
+}
+
+/* Botón de Emergencia */
+.emergency-button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    font-size: 1em;
+    color: #ffffff;
+    background-color: #d32f2f;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 5px 10px rgba(211, 47, 47, 0.4);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.emergency-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(211, 47, 47, 0.6);
+}
+
+/* Estilo para el contenedor de la llamada de emergencia en `emergency.html` */
+.call-status {
+    background-color: #333;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+.call-status ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 15px 0;
+}
+
+.call-status li {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+</style>
